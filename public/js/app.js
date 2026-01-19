@@ -138,7 +138,7 @@ const levels = [
 // GAME STATE
 // =============================
 let currentLevelIndex = 0;
-let numberToLetter = new Map();
+let points = 100;
 let inputsByNumber = new Map();
 let orderedInputs = [];
 let activeInput = null;
@@ -149,11 +149,13 @@ let gameOver = false;
 // DOM Elements
 const levelDisplay = document.getElementById("level-display");
 const categoryDisplay = document.getElementById("category-display");
+const pointsDisplay = document.getElementById("points-display");
 const phraseRowIds = ["phrase-row-1", "phrase-row-2", "phrase-row-3"];
 const statusText = document.getElementById("status-text");
 const checkBtn = document.getElementById("check-btn");
 const resetBtn = document.getElementById("reset-btn");
 const nextLevelBtn = document.getElementById("next-level-btn");
+const hintBtn = document.getElementById("hint-btn");
 const keyboard = document.getElementById("keyboard");
 const mistakeDots = Array.from(document.querySelectorAll(".mistakes__dots span"));
 
@@ -164,9 +166,8 @@ function initLevel(index) {
     return;
   }
 
-  // Reset state
+  // Reset level state
   currentLevelIndex = index;
-  numberToLetter.clear();
   inputsByNumber.clear();
   orderedInputs = [];
   activeInput = null;
@@ -176,6 +177,7 @@ function initLevel(index) {
   // Update UI
   levelDisplay.textContent = `LEVEL ${levelData.level}`;
   categoryDisplay.textContent = levelData.category;
+  updatePoints(0); // Refresh display
   statusText.textContent = "Tap a tile and start filling letters.";
   statusText.className = "status";
   nextLevelBtn.style.display = "none";
@@ -192,6 +194,12 @@ function initLevel(index) {
   buildPhrase(levelData);
 }
 
+function updatePoints(amount) {
+  points += amount;
+  if (points < 0) points = 0;
+  pointsDisplay.textContent = points;
+}
+
 function createLetter({ number, letter, fixed, highlight }) {
   const wrapper = document.createElement("div");
   wrapper.className = "letter";
@@ -205,7 +213,6 @@ function createLetter({ number, letter, fixed, highlight }) {
   if (fixed) {
     input.value = letter;
     input.disabled = true;
-    numberToLetter.set(number, letter);
   }
 
   const numberLabel = document.createElement("span");
@@ -251,14 +258,15 @@ function handleInputValue(input, rawValue) {
   const correctLetter = levelData.solutionMap.get(number);
 
   if (value === correctLetter) {
-    // Correct guess
-    numberToLetter.set(number, value);
-    syncInputs(number, value);
+    // Correct guess - ONLY fill this cell (User must fill others manually)
+    input.value = value;
     playSound('correct');
+    updatePoints(5); // Small reward for correct guess
     
     if (isSolutionComplete()) {
       statusText.textContent = "Amazing! You decrypted the full phrase!";
       statusText.className = "status status--success";
+      updatePoints(50); // Bonus for finishing level
       playSound('victory');
       endGame(true);
     } else {
@@ -269,6 +277,7 @@ function handleInputValue(input, rawValue) {
   } else {
     // Wrong guess
     mistakes += 1;
+    updatePoints(-10); // Penalty for mistake
     updateMistakes();
     playSound('mistake');
     
@@ -297,21 +306,37 @@ function handleInputValue(input, rawValue) {
   }
 }
 
-function handleBackspace(input) {
-  if (gameOver) return;
-  // In immediate feedback mode, we only allow clearing if it's not a correct guess yet?
-  // Actually, usually in these games once it's correct it stays.
-  // But let's allow moving back.
-  moveFocus(-1);
-}
-
-function syncInputs(number, value) {
-  const group = inputsByNumber.get(number) || [];
-  group.forEach((input) => {
-    if (!input.disabled) {
-      input.value = value;
+function handleHint() {
+  if (gameOver || points < 20) {
+    if (points < 20) {
+      statusText.textContent = "Not enough points for a hint!";
+      statusText.className = "status status--warn";
     }
-  });
+    return;
+  }
+
+  const levelData = levels[currentLevelIndex];
+  const emptyInputs = orderedInputs.filter(input => !input.value);
+  
+  if (emptyInputs.length === 0) return;
+
+  // Pick a random empty input
+  const randomInput = emptyInputs[Math.floor(Math.random() * emptyInputs.length)];
+  const number = Number(randomInput.dataset.number);
+  const correctLetter = levelData.solutionMap.get(number);
+
+  // Apply hint
+  updatePoints(-20);
+  randomInput.value = correctLetter;
+  playSound('correct');
+  statusText.textContent = "Hint revealed!";
+
+  if (isSolutionComplete()) {
+    statusText.textContent = "Amazing! You decrypted the full phrase!";
+    statusText.className = "status status--success";
+    playSound('victory');
+    endGame(true);
+  }
 }
 
 function moveFocus(direction) {
@@ -378,9 +403,11 @@ function updateMistakes() {
 
 function isSolutionComplete() {
   const levelData = levels[currentLevelIndex];
-  for (const [number, letter] of levelData.solutionMap.entries()) {
-    if ((numberToLetter.get(number) || "") !== letter) {
-      return false;
+  for (const input of orderedInputs) {
+    const number = Number(input.dataset.number);
+    const correctLetter = levelData.solutionMap.get(number);
+    if (input.value !== correctLetter) {
+        return false;
     }
   }
   return true;
@@ -414,13 +441,12 @@ function handleKeyboardClick(event) {
   const action = key.dataset.action;
   if (action === "backspace") {
     if (activeInput) {
-      handleBackspace(activeInput);
+        activeInput.value = "";
     }
     return;
   }
   if (action === "enter") {
-    // In immediate mode, enter is not strictly needed but can be used to skip or check
-    if (isSolutionComplete()) {
+    if (isSolutionComplete() && currentLevelIndex < levels.length - 1) {
         initLevel(currentLevelIndex + 1);
     }
     return;
@@ -443,7 +469,7 @@ function handlePhysicalKey(event) {
   }
   if (key === "BACKSPACE") {
     event.preventDefault();
-    handleBackspace(activeInput);
+    activeInput.value = "";
     return;
   }
   if (/^[A-Z]$/.test(key)) {
@@ -464,6 +490,7 @@ checkBtn.addEventListener("click", () => {
 });
 resetBtn.addEventListener("click", resetBoard);
 nextLevelBtn.addEventListener("click", () => initLevel(currentLevelIndex + 1));
+hintBtn.addEventListener("click", handleHint);
 keyboard.addEventListener("click", handleKeyboardClick);
 document.addEventListener("keydown", handlePhysicalKey);
 

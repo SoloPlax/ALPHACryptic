@@ -20,9 +20,52 @@ body {
 .top-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
-  padding: 6px 4px 12px;
+  padding: 10px 10px 15px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.stats-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #8c6a46;
+  letter-spacing: 1px;
+}
+
+.stats-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #b7c44a;
+}
+
+.hint-btn {
+  background: #f2d7bf;
+  border: 1px solid #dcb594;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: #a0774f;
+  font-weight: 800;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hint-btn:hover {
+  background: #e9c4a4;
+}
+
+.hint-btn:active {
+  transform: scale(0.95);
 }
 
 .mistakes {
