@@ -115,6 +115,75 @@ body {
 
 .app__main {
   padding: 26px 0 10px;
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(246, 239, 231, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.modal--show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal__content {
+  background: #fffaf4;
+  border: 2px solid #e3c4a5;
+  border-radius: 18px;
+  padding: 24px 28px;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.modal__icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.modal__title {
+  font-size: 1.2rem;
+  color: #8d5e3c;
+  margin-bottom: 8px;
+}
+
+.modal__phrase {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #5c4b3b;
+  margin-bottom: 6px;
+}
+
+.modal__quote {
+  font-size: 0.85rem;
+  color: #9b7b5c;
+  margin-bottom: 16px;
+}
+
+.modal__btn {
+  border: none;
+  background: #b7c44a;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal__btn:hover {
+  background: #a0b03a;
 }
 
 .phrase {

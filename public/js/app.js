@@ -66,6 +66,8 @@ const levels = [
   {
     level: 1,
     category: "INSPIRING SAY",
+    phrase: "DO WHAT YOU LOVE, LOVE WHAT YOU DO.",
+    motivationalQuote: "When you do what you love, success follows naturally. Keep chasing your passions!",
     solutionMap: new Map([
       [4, "D"], [15, "O"], [12, "W"], [7, "H"], [1, "A"],
       [20, "T"], [25, "Y"], [21, "U"], [22, "L"], [5, "V"], [9, "E"]
@@ -90,6 +92,8 @@ const levels = [
   {
     level: 2,
     category: "MOTIVATIONAL",
+    phrase: "DREAM BIG AND WORK HARD.",
+    motivationalQuote: "Every big achievement starts with a dream. Keep working hard and your dreams will become reality!",
     solutionMap: new Map([
       [1, "D"], [2, "R"], [3, "E"], [4, "A"], [5, "M"],
       [6, "B"], [7, "I"], [8, "G"], [9, "N"], [10, "W"],
@@ -112,6 +116,8 @@ const levels = [
   {
     level: 3,
     category: "KIND WORDS",
+    phrase: "BE KIND TO EVERYONE YOU MEET.",
+    motivationalQuote: "Kindness is a superpower. Spread it everywhere you go!",
     solutionMap: new Map([
       [1, "B"], [2, "E"], [3, "K"], [4, "I"], [5, "N"],
       [6, "D"], [7, "T"], [8, "O"], [9, "V"], [10, "R"],
@@ -135,6 +141,8 @@ const levels = [
   {
     level: 4,
     category: "WISDOM",
+    phrase: "LIVE WELL LAUGH LOUDER.",
+    motivationalQuote: "Life is better when you're laughing. Keep finding joy in every moment!",
     solutionMap: new Map([
       [1, "L"], [2, "I"], [3, "V"], [4, "E"], [5, "W"],
       [6, "E"], [7, "L"], [8, "A"], [9, "U"], [10, "G"], [11, "H"], [12, "O"]
@@ -153,6 +161,8 @@ const levels = [
   {
     level: 5,
     category: "MOTIVATION",
+    phrase: "YOU CAN DO IT!",
+    motivationalQuote: "Believe in yourself! You have the power to achieve anything you set your mind to.",
     solutionMap: new Map([
       [1, "Y"], [2, "O"], [3, "U"], [4, "C"], [5, "A"], [6, "N"],
       [7, "D"], [8, "I"], [9, "T"]
@@ -171,6 +181,8 @@ const levels = [
   {
     level: 6,
     category: "INSPIRATION",
+    phrase: "STAY BRIGHT TO SHINE.",
+    motivationalQuote: "Your light inspires others. Keep shining and brightening the world around you!",
     solutionMap: new Map([
       [1, "S"], [2, "T"], [3, "A"], [4, "Y"], [5, "B"],
       [6, "R"], [7, "I"], [8, "G"], [9, "H"], [10, "O"], [11, "N"], [12, "E"]
@@ -191,6 +203,8 @@ const levels = [
   {
     level: 7,
     category: "POSITIVITY",
+    phrase: "BE HAPPY BE BRAVE BE YOU.",
+    motivationalQuote: "The most beautiful thing you can be is yourself. Embrace who you are!",
     solutionMap: new Map([
       [1, "B"], [2, "E"], [3, "H"], [4, "A"], [5, "P"], [6, "Y"], [7, "R"], [8, "V"], [9, "O"], [10, "U"]
     ]),
@@ -212,6 +226,8 @@ const levels = [
   {
     level: 8,
     category: "ENCOURAGEMENT",
+    phrase: "YOU ARE AMAZING JUST AS YOU ARE.",
+    motivationalQuote: "Never forget how incredible you are. You were made to do great things!",
     solutionMap: new Map([
       [1, "Y"], [2, "O"], [3, "U"], [4, "A"], [5, "R"], [6, "E"], [7, "M"], [8, "Z"], [9, "I"], [10, "N"], [11, "G"], [12, "J"], [13, "S"], [14, "T"]
     ]),
@@ -234,6 +250,8 @@ const levels = [
   {
     level: 9,
     category: "SUCCESS",
+    phrase: "WORK HARD BE KIND AND HAVE FUN.",
+    motivationalQuote: "Success is a journey of hard work, kindness, and enjoying every step along the way!",
     solutionMap: new Map([
       [1, "W"], [2, "O"], [3, "R"], [4, "K"], [5, "H"], [6, "A"], [7, "D"], [8, "B"], [9, "E"], [10, "I"], [11, "N"], [12, "F"], [13, "U"]
     ]),
@@ -256,6 +274,8 @@ const levels = [
   {
     level: 10,
     category: "HOPE",
+    phrase: "EVERY DAY IS A NEW BEGINNING.",
+    motivationalQuote: "Each sunrise brings new possibilities. Today is your chance to start fresh!",
     solutionMap: new Map([
       [1, "E"], [2, "V"], [3, "R"], [4, "Y"], [5, "D"], [6, "A"], [7, "I"], [8, "S"], [9, "N"], [10, "W"], [11, "B"], [12, "G"]
     ]),
@@ -277,6 +297,8 @@ const levels = [
   {
     level: 11,
     category: "AMBITION",
+    phrase: "DREAM BIG AND DARE TO FAIL.",
+    motivationalQuote: "Failure is just a stepping stone to success. Dream big and never stop trying!",
     solutionMap: new Map([
       [1, "D"], [2, "R"], [3, "E"], [4, "A"], [5, "M"],
       [6, "B"], [7, "I"], [8, "G"], [9, "N"], [10, "T"],
@@ -300,6 +322,8 @@ const levels = [
   {
     level: 12,
     category: "HAPPINESS",
+    phrase: "CHOOSE TO BE HAPPY TODAY.",
+    motivationalQuote: "Happiness is a choice you make every day. Choose joy and watch it multiply!",
     solutionMap: new Map([
       [1, "C"], [2, "H"], [3, "O"], [4, "S"], [5, "E"],
       [6, "T"], [7, "B"], [8, "A"], [9, "P"], [10, "Y"], [11, "D"]
@@ -321,6 +345,8 @@ const levels = [
   {
     level: 13,
     category: "POTENTIAL",
+    phrase: "YOU ARE CAPABLE OF AMAZING THINGS.",
+    motivationalQuote: "Your potential is unlimited. Keep pushing your boundaries and amazing yourself!",
     solutionMap: new Map([
       [1, "Y"], [2, "O"], [3, "U"], [4, "A"], [5, "R"], [6, "E"], [7, "C"], [8, "P"], [9, "B"], [10, "L"], [11, "F"], [12, "M"], [13, "Z"], [14, "I"], [15, "N"], [16, "G"], [17, "S"], [18, "T"], [19, "H"]
     ]),
@@ -342,6 +368,8 @@ const levels = [
   {
     level: 14,
     category: "LIFESTYLE",
+    phrase: "DO WHAT YOU LOVE EVERY DAY.",
+    motivationalQuote: "Make every day count by doing what fills your heart with joy!",
     solutionMap: new Map([
       [1, "D"], [2, "O"], [3, "W"], [4, "H"], [5, "A"], [6, "T"], [7, "Y"], [8, "U"], [9, "L"], [10, "V"], [11, "E"], [12, "R"]
     ]),
@@ -363,6 +391,8 @@ const levels = [
   {
     level: 15,
     category: "KINDNESS",
+    phrase: "KINDNESS IS FREE SPRINKLE IT.",
+    motivationalQuote: "A little kindness goes a long way. Sprinkle it everywhere and watch it bloom!",
     solutionMap: new Map([
       [1, "K"], [2, "I"], [3, "N"], [4, "D"], [5, "E"], [6, "S"], [7, "F"], [8, "R"], [9, "P"], [10, "L"], [11, "T"]
     ]),
@@ -383,6 +413,8 @@ const levels = [
   {
     level: 16,
     category: "SELF BELIEF",
+    phrase: "BELIEVE IN YOURSELF ALWAYS.",
+    motivationalQuote: "You are your own biggest supporter. Believe in yourself and magic happens!",
     solutionMap: new Map([
       [1, "B"], [2, "E"], [3, "L"], [4, "I"], [5, "V"], [6, "N"], [7, "Y"], [8, "O"], [9, "U"], [10, "R"], [11, "S"], [12, "F"], [13, "A"], [14, "W"]
     ]),
@@ -402,6 +434,8 @@ const levels = [
   {
     level: 17,
     category: "OPTIMISM",
+    phrase: "MAKE TODAY THE BEST DAY EVER.",
+    motivationalQuote: "Every day is a gift. Make today unforgettable!",
     solutionMap: new Map([
       [1, "M"], [2, "A"], [3, "K"], [4, "E"], [5, "T"], [6, "O"], [7, "D"], [8, "Y"], [9, "H"], [10, "B"], [11, "S"], [12, "V"], [13, "R"]
     ]),
@@ -423,6 +457,8 @@ const levels = [
   {
     level: 18,
     category: "PERSPECTIVE",
+    phrase: "SUCCESS IS A JOURNEY NOT A DESTINATION.",
+    motivationalQuote: "Enjoy every step of your journey. The path itself is the reward!",
     solutionMap: new Map([
       [1, "S"], [2, "U"], [3, "C"], [4, "E"], [5, "I"], [6, "A"], [7, "J"], [8, "O"], [9, "R"], [10, "N"], [11, "Y"], [12, "T"], [13, "D"]
     ]),
@@ -445,6 +481,8 @@ const levels = [
   {
     level: 19,
     category: "PROGRESS",
+    phrase: "KEEP GOING YOU ARE DOING GREAT.",
+    motivationalQuote: "You're making amazing progress! Keep going – you're almost there!",
     solutionMap: new Map([
       [1, "K"], [2, "E"], [3, "P"], [4, "G"], [5, "O"], [6, "I"], [7, "N"], [8, "Y"], [9, "U"], [10, "A"], [11, "R"], [12, "D"], [13, "T"]
     ]),
@@ -466,6 +504,8 @@ const levels = [
   {
     level: 20,
     category: "FUTURE",
+    phrase: "THE BEST IS YET TO COME.",
+    motivationalQuote: "Your greatest adventures are still ahead. The best is yet to come!",
     solutionMap: new Map([
       [1, "T"], [2, "H"], [3, "E"], [4, "B"], [5, "S"], [6, "I"], [7, "Y"], [8, "O"], [9, "C"], [10, "M"]
     ]),
@@ -512,6 +552,55 @@ const hintBtn = document.getElementById("hint-btn");
 const instructionArea = document.getElementById("instruction-area");
 const keyboard = document.getElementById("keyboard");
 const mistakeDots = Array.from(document.querySelectorAll(".mistakes__dots span"));
+const victoryModal = document.getElementById("victory-modal");
+const decryptedPhraseEl = document.getElementById("decrypted-phrase");
+const motivationalQuoteEl = document.getElementById("motivational-quote");
+const modalNextBtn = document.getElementById("modal-next-btn");
+
+// Confetti celebration
+function triggerConfetti() {
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+  setTimeout(() => {
+    confetti({
+      particleCount: 100,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 }
+    });
+    confetti({
+      particleCount: 100,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 }
+    });
+  }, 250);
+}
+
+// Show victory modal with phrase and motivation
+function showVictoryModal() {
+  const levelData = levels[currentLevelIndex];
+  decryptedPhraseEl.textContent = `"${levelData.phrase}"`;
+  motivationalQuoteEl.textContent = levelData.motivationalQuote;
+  
+  if (currentLevelIndex >= levels.length - 1) {
+    modalNextBtn.textContent = "🏆 GAME COMPLETE!";
+    modalNextBtn.style.cursor = "default";
+  } else {
+    modalNextBtn.textContent = "NEXT LEVEL →";
+    modalNextBtn.style.cursor = "pointer";
+  }
+  
+  victoryModal.classList.add("modal--show");
+  triggerConfetti();
+}
+
+function hideVictoryModal() {
+  victoryModal.classList.remove("modal--show");
+}
 
 function initLevel(index) {
   const levelData = levels[index];
@@ -631,13 +720,10 @@ function handleInputValue(input, rawValue) {
     updatePoints(5); 
     
     if (isSolutionComplete()) {
-      statusText.textContent = "Amazing! You decrypted the full phrase!";
-      statusText.className = "status status--success";
-      instructionArea.classList.remove("instruction--hidden");
-      startHintBtn.style.display = "none";
       updatePoints(50); 
       playSound('victory');
       endGame(true);
+      showVictoryModal();
     } else {
       statusText.textContent = "Correct! Keep going.";
       statusText.className = "status";
@@ -701,12 +787,10 @@ function handleHint(isFree = false) {
   statusText.textContent = "Hint revealed!";
 
   if (isSolutionComplete()) {
-    statusText.textContent = "Amazing! You decrypted the full phrase!";
-    statusText.className = "status status--success";
-    instructionArea.classList.remove("instruction--hidden");
-    startHintBtn.style.display = "none";
+    updatePoints(50);
     playSound('victory');
     endGame(true);
+    showVictoryModal();
   }
 }
 
@@ -857,6 +941,12 @@ startHintBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", resetBoard);
 nextLevelBtn.addEventListener("click", () => initLevel(currentLevelIndex + 1));
 hintBtn.addEventListener("click", () => handleHint(false));
+modalNextBtn.addEventListener("click", () => {
+  hideVictoryModal();
+  if (currentLevelIndex < levels.length - 1) {
+    initLevel(currentLevelIndex + 1);
+  }
+});
 keyboard.addEventListener("click", handleKeyboardClick);
 document.addEventListener("keydown", handlePhysicalKey);
 

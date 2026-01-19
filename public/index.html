@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ALPHACryptic</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
   <body>
     <div class="app">
@@ -35,6 +36,16 @@
       </section>
 
       <main class="app__main">
+        <div id="victory-modal" class="modal">
+          <div class="modal__content">
+            <div class="modal__icon">✨</div>
+            <h2 class="modal__title">LEVEL COMPLETE!</h2>
+            <p id="decrypted-phrase" class="modal__phrase"></p>
+            <p id="motivational-quote" class="modal__quote"></p>
+            <button id="modal-next-btn" class="modal__btn">NEXT LEVEL →</button>
+          </div>
+        </div>
+
         <section class="phrase">
           <div class="phrase__row" id="phrase-row-1"></div>
           <div class="phrase__row" id="phrase-row-2"></div>
