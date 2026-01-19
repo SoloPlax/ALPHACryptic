@@ -20,42 +20,9 @@ body {
 .top-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
   padding: 6px 4px 12px;
-}
-
-.ads-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  color: #8c6a46;
-}
-
-.toggle {
-  position: relative;
-  width: 62px;
-  height: 28px;
-  background: #b7c44a;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  gap: 6px;
-}
-
-.toggle__knob {
-  width: 22px;
-  height: 22px;
-  background: #f7f2e9;
-  border-radius: 50%;
-}
-
-.toggle__label {
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
 }
 
 .mistakes {
@@ -78,17 +45,12 @@ body {
   height: 18px;
   border: 2px solid #c7a177;
   border-radius: 50%;
+  transition: background-color 0.3s ease;
 }
 
-.pause {
-  border: none;
-  background: #f2d7bf;
-  color: #a0774f;
-  border-radius: 10px;
-  width: 42px;
-  height: 42px;
-  font-size: 1.1rem;
-  font-weight: 800;
+.mistakes__dots span.mistake--active {
+  background-color: #c84545;
+  border-color: #c84545;
 }
 
 .sub-bar {
@@ -202,6 +164,12 @@ body {
   font-weight: 700;
 }
 
+.instruction__actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .reset {
   border: none;
   background: none;
@@ -210,6 +178,23 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.next-level {
+  border: none;
+  background: #b7c44a;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next-level:hover {
+  background: #a0b03a;
 }
 
 .keyboard {
@@ -235,10 +220,21 @@ body {
   border: 1px solid #e3c4a5;
   font-weight: 700;
   color: #8d5e3c;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.key:active {
+  background: #e8d5c0;
 }
 
 .key--wide {
   min-width: 50px;
+}
+
+.keyboard--disabled .key {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 700px) {

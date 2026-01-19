@@ -9,13 +9,6 @@
   <body>
     <div class="app">
       <header class="top-bar">
-        <div class="ads-toggle">
-          <span>ADS</span>
-          <div class="toggle">
-            <div class="toggle__knob"></div>
-            <span class="toggle__label">ON</span>
-          </div>
-        </div>
         <div class="mistakes">
           <span class="mistakes__label">MISTAKES</span>
           <div class="mistakes__dots">
@@ -24,12 +17,11 @@
             <span></span>
           </div>
         </div>
-        <button class="pause">II</button>
       </header>
 
       <section class="sub-bar">
-        <span>LEVEL 1</span>
-        <span>INSPIRING SAY</span>
+        <span id="level-display">LEVEL 1</span>
+        <span id="category-display">INSPIRING SAY</span>
       </section>
 
       <main class="app__main">
@@ -44,44 +36,47 @@
             Decrypt the whole phrase. <strong>Good luck!</strong>
           </button>
           <p class="status" id="status-text">Tap a tile and start filling letters.</p>
-          <button class="reset" id="reset-btn">Reset</button>
+          <div class="instruction__actions">
+            <button class="reset" id="reset-btn">Reset</button>
+            <button class="next-level" id="next-level-btn" style="display: none;">Next Level →</button>
+          </div>
         </section>
       </main>
 
-      <section class="keyboard">
+      <section class="keyboard" id="keyboard">
         <div class="keyboard__row">
-          <span class="key">Q</span>
-          <span class="key">W</span>
-          <span class="key">E</span>
-          <span class="key">R</span>
-          <span class="key">T</span>
-          <span class="key">Y</span>
-          <span class="key">U</span>
-          <span class="key">I</span>
-          <span class="key">O</span>
-          <span class="key">P</span>
+          <button class="key" data-key="Q">Q</button>
+          <button class="key" data-key="W">W</button>
+          <button class="key" data-key="E">E</button>
+          <button class="key" data-key="R">R</button>
+          <button class="key" data-key="T">T</button>
+          <button class="key" data-key="Y">Y</button>
+          <button class="key" data-key="U">U</button>
+          <button class="key" data-key="I">I</button>
+          <button class="key" data-key="O">O</button>
+          <button class="key" data-key="P">P</button>
         </div>
         <div class="keyboard__row">
-          <span class="key">A</span>
-          <span class="key">S</span>
-          <span class="key">D</span>
-          <span class="key">F</span>
-          <span class="key">G</span>
-          <span class="key">H</span>
-          <span class="key">J</span>
-          <span class="key">K</span>
-          <span class="key">L</span>
+          <button class="key" data-key="A">A</button>
+          <button class="key" data-key="S">S</button>
+          <button class="key" data-key="D">D</button>
+          <button class="key" data-key="F">F</button>
+          <button class="key" data-key="G">G</button>
+          <button class="key" data-key="H">H</button>
+          <button class="key" data-key="J">J</button>
+          <button class="key" data-key="K">K</button>
+          <button class="key" data-key="L">L</button>
         </div>
         <div class="keyboard__row">
-          <span class="key key--wide">⌫</span>
-          <span class="key">Z</span>
-          <span class="key">X</span>
-          <span class="key">C</span>
-          <span class="key">V</span>
-          <span class="key">B</span>
-          <span class="key">N</span>
-          <span class="key">M</span>
-          <span class="key key--wide">↵</span>
+          <button class="key key--wide" data-action="backspace">⌫</button>
+          <button class="key" data-key="Z">Z</button>
+          <button class="key" data-key="X">X</button>
+          <button class="key" data-key="C">C</button>
+          <button class="key" data-key="V">V</button>
+          <button class="key" data-key="B">B</button>
+          <button class="key" data-key="N">N</button>
+          <button class="key" data-key="M">M</button>
+          <button class="key key--wide" data-action="enter">↵</button>
         </div>
       </section>
     </div>
