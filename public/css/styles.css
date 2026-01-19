@@ -121,17 +121,17 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 22px 36px; /* Increased horizontal gap for better word separation */
+  gap: 24px 80px; /* Space between words is 80px (~2 cells of 40px) */
   font-size: 1.5rem;
   letter-spacing: 2px;
-  padding: 0 10px;
+  padding: 10px;
 }
 
 .word {
   display: flex;
-  gap: 10px; /* Space between letters in a word */
-  align-items: flex-end;
-  margin-bottom: 12px; /* Extra vertical breathing room */
+  gap: 6px; /* Tight spacing between letters within a word */
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .punctuation {
@@ -145,15 +145,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  min-width: 26px;
+  gap: 4px;
+  min-width: 40px;
 }
 
 .letter__input {
-  width: 26px;
-  border: none;
-  border-bottom: 2px solid #b99b7b;
-  background: transparent;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #b99b7b;
+  border-radius: 8px;
+  background: #ffffff;
   text-align: center;
   font-size: 1.4rem;
   font-weight: 700;
@@ -161,22 +162,27 @@ body {
   color: #4b3b2b;
   outline: none;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .letter__input:disabled {
+  background: #fdfaf7;
   color: #4b3b2b;
+  border-color: #dcb594;
 }
 
 .letter__input--active {
-  border-bottom: 3px solid #2980b9;
-  background: rgba(41, 128, 185, 0.15);
-  transform: scale(1.15);
-  box-shadow: 0 4px 10px rgba(41, 128, 185, 0.2);
+  border: 3px solid #2980b9;
+  background: rgba(41, 128, 185, 0.05);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.25);
 }
 
 .letter__input--active-error {
-  border-bottom: 3px solid #c84545;
-  background: rgba(200, 69, 69, 0.2);
+  border: 3px solid #c84545;
+  background: rgba(200, 69, 69, 0.1);
   color: #c84545 !important;
   animation: shake 0.4s;
 }
@@ -305,16 +311,18 @@ body {
 
 @media (max-width: 700px) {
   .phrase__row {
-    gap: 18px 24px; /* Maintain better spacing on mobile */
+    gap: 15px 64px; /* Space between words on mobile (~2 cells of 32px) */
   }
 
   .letter__input {
-    width: 22px; /* Slightly smaller to fit more words */
-    font-size: 1.1rem;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    border-radius: 6px;
   }
 
   .letter {
-    min-width: 22px;
+    min-width: 32px;
   }
 
   .keyboard {
