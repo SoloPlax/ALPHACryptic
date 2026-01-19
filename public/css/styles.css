@@ -121,15 +121,17 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 18px 20px;
+  gap: 22px 36px; /* Increased horizontal gap for better word separation */
   font-size: 1.5rem;
   letter-spacing: 2px;
+  padding: 0 10px;
 }
 
 .word {
   display: flex;
-  gap: 8px;
+  gap: 10px; /* Space between letters in a word */
   align-items: flex-end;
+  margin-bottom: 12px; /* Extra vertical breathing room */
 }
 
 .punctuation {
@@ -303,11 +305,16 @@ body {
 
 @media (max-width: 700px) {
   .phrase__row {
-    gap: 12px 14px;
+    gap: 18px 24px; /* Maintain better spacing on mobile */
   }
 
   .letter__input {
-    font-size: 1.2rem;
+    width: 22px; /* Slightly smaller to fit more words */
+    font-size: 1.1rem;
+  }
+
+  .letter {
+    min-width: 22px;
   }
 
   .keyboard {
