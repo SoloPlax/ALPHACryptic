@@ -272,10 +272,18 @@ function handleInputValue(input, rawValue) {
     updateMistakes();
     playSound('mistake');
     
+    // Immediate visual feedback for error
+    input.value = value;
+    input.classList.remove("letter__input--active");
     input.classList.add("letter__input--active-error");
+    
     setTimeout(() => {
       input.classList.remove("letter__input--active-error");
-    }, 500);
+      input.value = ""; // Clear the wrong letter
+      if (!gameOver) {
+        input.classList.add("letter__input--active");
+      }
+    }, 400);
 
     if (mistakes >= maxMistakes) {
       statusText.textContent = "Out of tries! Reset to play again.";
