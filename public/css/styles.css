@@ -121,7 +121,7 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 24px 80px; /* Space between words is 80px (~2 cells of 40px) */
+  gap: 0; /* Horizontal gap handled by word margins for better wrapping */
   font-size: 1.5rem;
   letter-spacing: 2px;
   padding: 10px;
@@ -131,7 +131,7 @@ body {
   display: flex;
   gap: 6px; /* Tight spacing between letters within a word */
   align-items: center;
-  margin-bottom: 15px;
+  margin: 0 clamp(14px, 4vw, 32px) 15px; /* Robust adaptive word spacing */
 }
 
 .punctuation {
@@ -311,7 +311,7 @@ body {
 
 @media (max-width: 700px) {
   .phrase__row {
-    gap: 15px 64px; /* Space between words on mobile (~2 cells of 32px) */
+    gap: 0;
   }
 
   .letter__input {
