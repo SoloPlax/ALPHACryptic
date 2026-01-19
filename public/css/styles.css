@@ -115,10 +115,29 @@ body {
   text-transform: uppercase;
   color: #4b3b2b;
   outline: none;
+  transition: all 0.2s ease;
 }
 
 .letter__input:disabled {
   color: #4b3b2b;
+}
+
+.letter__input--active {
+  border-bottom: 3px solid #b7c44a;
+  background: rgba(183, 196, 74, 0.1);
+  transform: scale(1.1);
+}
+
+.letter__input--active-error {
+  border-bottom: 3px solid #c84545;
+  background: rgba(200, 69, 69, 0.1);
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
 }
 
 .letter__number {

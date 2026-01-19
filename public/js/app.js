@@ -184,7 +184,8 @@ function initLevel(index) {
 
   // Clear rows
   phraseRowIds.forEach(id => {
-    document.getElementById(id).innerHTML = "";
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = "";
   });
 
   // Build Board
@@ -199,7 +200,7 @@ function createLetter({ number, letter, fixed, highlight }) {
   input.className = "letter__input";
   input.setAttribute("maxlength", "1");
   input.dataset.number = number;
-  input.readOnly = true; // Use virtual keyboard/physical keys only
+  input.readOnly = true; 
 
   if (fixed) {
     input.value = letter;
@@ -231,34 +232,68 @@ function registerInput(number, input) {
 
 function setActiveInput(input) {
   if (gameOver) return;
-  orderedInputs.forEach((item) => item.classList.remove("letter__input--active"));
+  orderedInputs.forEach((item) => {
+    item.classList.remove("letter__input--active");
+    item.classList.remove("letter__input--active-error");
+  });
   activeInput = input;
   activeInput.classList.add("letter__input--active");
   playSound('input');
 }
 
 function handleInputValue(input, rawValue) {
-  if (gameOver) return;
+  if (gameOver || !input) return;
   const value = rawValue.toUpperCase();
-  const number = Number(input.dataset.number);
+  if (!value) return;
 
-  if (value) {
+  const number = Number(input.dataset.number);
+  const levelData = levels[currentLevelIndex];
+  const correctLetter = levelData.solutionMap.get(number);
+
+  if (value === correctLetter) {
+    // Correct guess
     numberToLetter.set(number, value);
     syncInputs(number, value);
-    playSound('input');
-    moveFocus(1);
+    playSound('correct');
+    
+    if (isSolutionComplete()) {
+      statusText.textContent = "Amazing! You decrypted the full phrase!";
+      statusText.className = "status status--success";
+      playSound('victory');
+      endGame(true);
+    } else {
+      statusText.textContent = "Correct! Keep going.";
+      statusText.className = "status";
+      moveFocus(1);
+    }
   } else {
-    numberToLetter.delete(number);
-    syncInputs(number, "");
+    // Wrong guess
+    mistakes += 1;
+    updateMistakes();
+    playSound('mistake');
+    
+    input.classList.add("letter__input--active-error");
+    setTimeout(() => {
+      input.classList.remove("letter__input--active-error");
+    }, 500);
+
+    if (mistakes >= maxMistakes) {
+      statusText.textContent = "Out of tries! Reset to play again.";
+      statusText.className = "status status--warn";
+      playSound('wrong');
+      endGame(false);
+    } else {
+      statusText.textContent = `Not that letter! Mistake ${mistakes} of ${maxMistakes}.`;
+      statusText.className = "status status--warn";
+    }
   }
 }
 
 function handleBackspace(input) {
   if (gameOver) return;
-  if (input.value) {
-    handleInputValue(input, "");
-    return;
-  }
+  // In immediate feedback mode, we only allow clearing if it's not a correct guess yet?
+  // Actually, usually in these games once it's correct it stays.
+  // But let's allow moving back.
   moveFocus(-1);
 }
 
@@ -274,15 +309,24 @@ function syncInputs(number, value) {
 function moveFocus(direction) {
   if (!activeInput) return;
   const index = orderedInputs.indexOf(activeInput);
-  const nextIndex = index + direction;
-  if (nextIndex < 0 || nextIndex >= orderedInputs.length) return;
-  const nextInput = orderedInputs[nextIndex];
-  setActiveInput(nextInput);
+  
+  // Find next non-filled input
+  let nextIndex = index + direction;
+  while (nextIndex >= 0 && nextIndex < orderedInputs.length) {
+    const nextInput = orderedInputs[nextIndex];
+    if (!nextInput.value) {
+      setActiveInput(nextInput);
+      return;
+    }
+    nextIndex += direction;
+  }
 }
 
 function buildPhrase(levelData) {
   levelData.phraseRows.forEach((row, rowIndex) => {
     const container = document.getElementById(phraseRowIds[rowIndex]);
+    if (!container) return;
+
     row.forEach((wordData) => {
       const word = document.createElement("div");
       word.className = "word";
@@ -311,8 +355,10 @@ function buildPhrase(levelData) {
     });
   });
 
-  if (orderedInputs.length) {
-    setActiveInput(orderedInputs[0]);
+  // Set first empty input as active
+  const firstEmpty = orderedInputs.find(input => !input.value);
+  if (firstEmpty) {
+    setActiveInput(firstEmpty);
   }
 }
 
@@ -330,33 +376,6 @@ function isSolutionComplete() {
     }
   }
   return true;
-}
-
-function checkAnswers() {
-  if (gameOver) return;
-
-  if (isSolutionComplete()) {
-    statusText.textContent = "Amazing! You decrypted the full phrase!";
-    statusText.className = "status status--success";
-    playSound('victory');
-    endGame(true);
-    return;
-  }
-
-  mistakes += 1;
-  updateMistakes();
-  playSound('mistake');
-
-  if (mistakes >= maxMistakes) {
-    statusText.textContent = "Out of tries! Reset to play again.";
-    statusText.className = "status status--warn";
-    playSound('wrong');
-    endGame(false);
-    return;
-  }
-
-  statusText.textContent = `Not quite! Mistake ${mistakes} of ${maxMistakes}.`;
-  statusText.className = "status status--warn";
 }
 
 function endGame(win) {
@@ -392,7 +411,10 @@ function handleKeyboardClick(event) {
     return;
   }
   if (action === "enter") {
-    checkAnswers();
+    // In immediate mode, enter is not strictly needed but can be used to skip or check
+    if (isSolutionComplete()) {
+        initLevel(currentLevelIndex + 1);
+    }
     return;
   }
 
@@ -406,7 +428,9 @@ function handlePhysicalKey(event) {
   const key = event.key.toUpperCase();
   if (key === "ENTER") {
     event.preventDefault();
-    checkAnswers();
+    if (isSolutionComplete() && currentLevelIndex < levels.length - 1) {
+        initLevel(currentLevelIndex + 1);
+    }
     return;
   }
   if (key === "BACKSPACE") {
@@ -420,7 +444,16 @@ function handlePhysicalKey(event) {
   }
 }
 
-checkBtn.addEventListener("click", checkAnswers);
+// Events
+checkBtn.addEventListener("click", () => {
+    if (isSolutionComplete()) {
+        if (currentLevelIndex < levels.length - 1) {
+            initLevel(currentLevelIndex + 1);
+        }
+    } else {
+        statusText.textContent = "Fill in the correct letters first!";
+    }
+});
 resetBtn.addEventListener("click", resetBoard);
 nextLevelBtn.addEventListener("click", () => initLevel(currentLevelIndex + 1));
 keyboard.addEventListener("click", handleKeyboardClick);
