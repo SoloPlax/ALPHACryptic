@@ -1,0 +1,12 @@
+{
+  "name": "alphacryptic",
+  "version": "0.1.0",
+  "description": "Kid-friendly cryptic clue game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

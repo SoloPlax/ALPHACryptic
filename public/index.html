@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALPHACryptic</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <h1>ALPHACryptic</h1>
+        <p class="app__subtitle">Crack the code and solve the clues!</p>
+      </header>
+
+      <main class="app__main">
+        <section class="puzzle">
+          <div class="puzzle__row" id="puzzle-row-1"></div>
+          <div class="puzzle__row" id="puzzle-row-2"></div>
+          <div class="puzzle__row" id="puzzle-row-3"></div>
+        </section>
+
+        <section class="clues">
+          <h2>Clues</h2>
+          <div class="clues__list" id="clue-list"></div>
+        </section>
+      </main>
+
+      <footer class="app__footer">
+        <button class="btn" id="check-btn">Check Answers</button>
+        <button class="btn btn--ghost" id="reset-btn">Reset</button>
+        <p class="status" id="status-text">Fill in the letters that match each number.</p>
+      </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

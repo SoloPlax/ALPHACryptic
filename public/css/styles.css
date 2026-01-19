@@ -1,0 +1,218 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Verdana", sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f9f6f1 0%, #f0ede7 60%, #ece6db 100%);
+  color: #2d2a26;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 18px 48px;
+}
+
+.app__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.app__header h1 {
+  font-size: 2.4rem;
+  letter-spacing: 2px;
+  color: #2d2a26;
+}
+
+.app__subtitle {
+  color: #6f6a62;
+  margin-top: 8px;
+}
+
+.app__main {
+  display: grid;
+  gap: 24px;
+}
+
+.puzzle {
+  background: #f2e4c9;
+  border-radius: 18px;
+  padding: 20px;
+  border: 3px solid #d4b68d;
+  box-shadow: 0 6px 0 rgba(196, 155, 97, 0.45);
+}
+
+.puzzle__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 16px;
+}
+
+.puzzle__row:last-child {
+  margin-bottom: 0;
+}
+
+.token {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.tile {
+  width: 54px;
+  height: 54px;
+  border-radius: 10px;
+  border: 2px solid #d1b58d;
+  background: #f9e7c3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #3a3229;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.tile input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  outline: none;
+  color: #2f2720;
+}
+
+.tile input:disabled {
+  color: #2f2720;
+}
+
+.tile--fixed {
+  background: #efe7ff;
+  border-color: #9b82ff;
+  box-shadow: 0 0 0 2px rgba(103, 66, 255, 0.25);
+}
+
+.tile--empty {
+  background: transparent;
+  border: 2px dashed rgba(177, 150, 109, 0.45);
+  box-shadow: none;
+}
+
+.token__number {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4d463c;
+}
+
+.token__number--highlight {
+  color: #c84545;
+}
+
+.clues {
+  background: #d9f0d0;
+  border-radius: 18px;
+  padding: 20px;
+  border: 3px solid #8bb47a;
+  box-shadow: 0 6px 0 rgba(112, 165, 92, 0.5);
+}
+
+.clues h2 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.7rem;
+}
+
+.clues__list {
+  display: grid;
+  gap: 18px;
+}
+
+.clue {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.clue__label {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.clue__tiles {
+  display: flex;
+  gap: 10px;
+}
+
+.app__footer {
+  margin-top: 24px;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.btn {
+  background: #f5d27a;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 26px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 0 rgba(180, 130, 55, 0.6);
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 rgba(180, 130, 55, 0.6);
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 2px solid #b48b4c;
+  box-shadow: none;
+}
+
+.status {
+  font-size: 0.95rem;
+  color: #5e564b;
+}
+
+.status--success {
+  color: #1f7a3a;
+  font-weight: 700;
+}
+
+.status--warn {
+  color: #c84545;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .tile {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+
+  .tile input {
+    font-size: 1.3rem;
+  }
+
+  .clue {
+    grid-template-columns: 1fr;
+  }
+
+  .clue__tiles {
+    flex-wrap: wrap;
+  }
+}
