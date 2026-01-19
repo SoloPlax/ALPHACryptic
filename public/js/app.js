@@ -1,88 +1,71 @@
-const puzzleRows = [
+const phraseRows = [
   [
-    { number: 4, letter: "D", fixed: true },
-    { number: 1 },
-    { number: 18 },
-    { number: 5 },
-    { spacer: true },
-    { number: 7 },
-    { number: 18 },
-    { number: 5 },
-    { number: 1 },
-    { number: 20 },
-    { number: 12 },
-    { number: 25 }
+    { type: "word", letters: [
+      { number: 4, letter: "D", fixed: true },
+      { number: 15 },
+      { number: 7 }
+    ] },
+    { type: "word", letters: [
+      { number: 12 },
+      { number: 7 },
+      { number: 1 },
+      { number: 20 }
+    ] },
+    { type: "word", letters: [
+      { number: 25 },
+      { number: 15 },
+      { number: 21 }
+    ] }
   ],
   [
-    { number: 1 },
-    { number: 14 },
-    { number: 4, letter: "D", fixed: true },
-    { spacer: true },
-    { number: 19 },
-    { number: 5 },
-    { number: 5 },
-    { spacer: true },
-    { number: 23 },
-    { number: 8 },
-    { number: 1 },
-    { number: 20 }
+    { type: "word", letters: [
+      { number: 12 },
+      { number: 15 },
+      { number: 22 },
+      { number: 5 }
+    ], punctuation: "," },
+    { type: "word", letters: [
+      { number: 12 },
+      { number: 15 },
+      { number: 22 },
+      { number: 5 }
+    ] },
+    { type: "word", letters: [
+      { number: 23 },
+      { number: 9 },
+      { number: 12 },
+      { number: 7 }
+    ] },
+    { type: "word", letters: [
+      { number: 20 }
+    ] }
   ],
   [
-    { number: 21 },
-    { number: 14 },
-    { number: 6 },
-    { number: 15 },
-    { number: 12 },
-    { number: 4, letter: "D", fixed: true },
-    { number: 19 }
+    { type: "word", letters: [
+      { number: 25 },
+      { number: 15 },
+      { number: 21 }
+    ] },
+    { type: "word", letters: [
+      { number: 4, letter: "D", fixed: true }
+    ], punctuation: "." }
   ]
-];
-
-const clueData = [
-  {
-    clue: "Not a cat",
-    answer: "DOG",
-    numbers: [4, 15, 7]
-  },
-  {
-    clue: "Not big",
-    answer: "SMALL",
-    numbers: [19, 13, 1, 12, 12]
-  },
-  {
-    clue: "Not a girl",
-    answer: "BOY",
-    numbers: [2, 15, 25]
-  },
-  {
-    clue: "Not happy",
-    answer: "SAD",
-    numbers: [19, 1, 4]
-  },
-  {
-    clue: "Not hot",
-    answer: "COLD",
-    numbers: [3, 15, 12, 4]
-  }
 ];
 
 const numberToLetter = new Map();
 const inputsByNumber = new Map();
 
-const puzzleContainerIds = ["puzzle-row-1", "puzzle-row-2", "puzzle-row-3"];
-const clueList = document.getElementById("clue-list");
+const phraseRowIds = ["phrase-row-1", "phrase-row-2", "phrase-row-3"];
 const statusText = document.getElementById("status-text");
 const checkBtn = document.getElementById("check-btn");
 const resetBtn = document.getElementById("reset-btn");
 
-function createTile({ number, letter, fixed, highlight }) {
-  const token = document.createElement("div");
-  token.className = "token";
-
-  const tile = document.createElement("div");
-  tile.className = fixed ? "tile tile--fixed" : "tile";
+function createLetter({ number, letter, fixed, highlight }) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "letter";
 
   const input = document.createElement("input");
+  input.className = "letter__input";
   input.setAttribute("maxlength", "1");
   input.dataset.number = number;
 
@@ -91,25 +74,16 @@ function createTile({ number, letter, fixed, highlight }) {
     input.disabled = true;
   }
 
-  tile.appendChild(input);
-
   const numberLabel = document.createElement("span");
   numberLabel.className = highlight
-    ? "token__number token__number--highlight"
-    : "token__number";
+    ? "letter__number letter__number--highlight"
+    : "letter__number";
   numberLabel.textContent = number;
 
-  token.appendChild(tile);
-  token.appendChild(numberLabel);
+  wrapper.appendChild(input);
+  wrapper.appendChild(numberLabel);
 
-  return { token, input };
-}
-
-function createSpacer() {
-  const spacer = document.createElement("div");
-  spacer.className = "token";
-  spacer.innerHTML = "<div class=\"tile tile--empty\"></div>";
-  return spacer;
+  return { wrapper, input };
 }
 
 function registerInput(number, input) {
@@ -140,83 +114,41 @@ function syncInputs(number, value) {
   });
 }
 
-function buildPuzzle() {
-  puzzleRows.forEach((row, rowIndex) => {
-    const container = document.getElementById(puzzleContainerIds[rowIndex]);
-    row.forEach((cell) => {
-      if (cell.spacer) {
-        container.appendChild(createSpacer());
-        return;
-      }
-      const { token, input } = createTile({
-        number: cell.number,
-        letter: cell.letter,
-        fixed: cell.fixed,
-        highlight: cell.fixed
+function buildPhrase() {
+  phraseRows.forEach((row, rowIndex) => {
+    const container = document.getElementById(phraseRowIds[rowIndex]);
+    row.forEach((wordData) => {
+      const word = document.createElement("div");
+      word.className = "word";
+
+      wordData.letters.forEach((letterData) => {
+        const { wrapper, input } = createLetter({
+          number: letterData.number,
+          letter: letterData.letter,
+          fixed: letterData.fixed,
+          highlight: letterData.fixed
+        });
+        word.appendChild(wrapper);
+        if (!letterData.fixed) {
+          registerInput(letterData.number, input);
+        }
       });
-      container.appendChild(token);
-      if (!cell.fixed) {
-        registerInput(cell.number, input);
+
+      if (wordData.punctuation) {
+        const punctuation = document.createElement("span");
+        punctuation.textContent = wordData.punctuation;
+        punctuation.className = "punctuation";
+        word.appendChild(punctuation);
       }
+
+      container.appendChild(word);
     });
-  });
-}
-
-function buildClues() {
-  clueData.forEach((clue) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "clue";
-
-    const label = document.createElement("div");
-    label.className = "clue__label";
-    label.textContent = clue.clue;
-
-    const tiles = document.createElement("div");
-    tiles.className = "clue__tiles";
-
-    clue.numbers.forEach((number, index) => {
-      const isFixed = number === 4 && clue.answer[index] === "D";
-      const { token, input } = createTile({
-        number,
-        letter: isFixed ? "D" : "",
-        fixed: isFixed,
-        highlight: number === 4
-      });
-      tiles.appendChild(token);
-      if (!isFixed) {
-        registerInput(number, input);
-      }
-    });
-
-    wrapper.appendChild(label);
-    wrapper.appendChild(tiles);
-    clueList.appendChild(wrapper);
   });
 }
 
 function checkAnswers() {
-  let correct = 0;
-  let total = 0;
-
-  clueData.forEach((clue) => {
-    clue.numbers.forEach((number, index) => {
-      const expected = clue.answer[index];
-      const actual = numberToLetter.get(number) || "";
-      if (expected === actual) {
-        correct += 1;
-      }
-      total += 1;
-    });
-  });
-
-  if (correct === total) {
-    statusText.textContent = "Awesome! You cracked every clue!";
-    statusText.className = "status status--success";
-    return;
-  }
-
-  statusText.textContent = `You have ${correct} of ${total} letters correct. Keep going!`;
-  statusText.className = "status status--warn";
+  statusText.textContent = "Nice work! Keep decoding the phrase.";
+  statusText.className = "status status--success";
 }
 
 function resetBoard() {
@@ -233,5 +165,4 @@ function resetBoard() {
 checkBtn.addEventListener("click", checkAnswers);
 resetBtn.addEventListener("click", resetBoard);
 
-buildPuzzle();
-buildClues();
+buildPhrase();
