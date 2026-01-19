@@ -142,10 +142,11 @@ const levels = [
     phraseRows: [
       [
         { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }] },
-        { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 8 }, { number: 9 }, { number: 10 }, { number: 11 }] }
+        { type: "word", letters: [{ number: 5 }, { number: 4 }, { number: 7 }, { number: 7 }] }
       ],
       [
-        { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 12 }, { number: 3 }, { number: 4 }], punctuation: "." }
+        { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 8 }, { number: 9 }, { number: 10 }, { number: 11 }] },
+        { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 12 }, { number: 2 }, { number: 4 }, { number: 3 }], punctuation: "." }
       ]
     ]
   },
@@ -172,18 +173,314 @@ const levels = [
     category: "INSPIRATION",
     solutionMap: new Map([
       [1, "S"], [2, "T"], [3, "A"], [4, "Y"], [5, "B"],
-      [6, "R"], [7, "I"], [8, "G"], [9, "H"]
+      [6, "R"], [7, "I"], [8, "G"], [9, "H"], [10, "O"], [11, "N"], [12, "E"]
     ]),
     phraseRows: [
       [
         { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }] }
       ],
       [
-        { type: "word", letters: [{ number: 5, letter: "B", fixed: true }, { number: 6 }, { number: 7 }, { number: 8 }, { number: 11 }] },
+        { type: "word", letters: [{ number: 5, letter: "B", fixed: true }, { number: 6 }, { number: 7 }, { number: 8 }, { number: 9 }, { number: 2 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 2, letter: "T", fixed: true }, { number: 10 }] },
+        { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 9 }, { number: 7 }, { number: 11 }, { number: 12 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 7,
+    category: "POSITIVITY",
+    solutionMap: new Map([
+      [1, "B"], [2, "E"], [3, "H"], [4, "A"], [5, "P"], [6, "Y"], [7, "R"], [8, "V"], [9, "O"], [10, "U"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "B", fixed: true }, { number: 2 }] },
+        { type: "word", letters: [{ number: 3 }, { number: 4 }, { number: 5 }, { number: 5 }, { number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 1, letter: "B", fixed: true }, { number: 2 }] },
+        { type: "word", letters: [{ number: 1 }, { number: 7 }, { number: 4 }, { number: 8 }, { number: 2 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 1, letter: "B", fixed: true }, { number: 2 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 9 }, { number: 10 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 8,
+    category: "ENCOURAGEMENT",
+    solutionMap: new Map([
+      [1, "Y"], [2, "O"], [3, "U"], [4, "A"], [5, "R"], [6, "E"], [7, "M"], [8, "Z"], [9, "I"], [10, "N"], [11, "G"], [12, "J"], [13, "S"], [14, "T"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "Y", fixed: true }, { number: 2 }, { number: 3 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 5 }, { number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 4 }, { number: 7 }, { number: 4 }, { number: 8 }, { number: 9 }, { number: 10 }, { number: 11 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 12 }, { number: 3 }, { number: 13 }, { number: 14 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 13 }] },
+        { type: "word", letters: [{ number: 1, letter: "Y", fixed: true }, { number: 2 }, { number: 3 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 5 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 9,
+    category: "SUCCESS",
+    solutionMap: new Map([
+      [1, "W"], [2, "O"], [3, "R"], [4, "K"], [5, "H"], [6, "A"], [7, "D"], [8, "B"], [9, "E"], [10, "I"], [11, "N"], [12, "F"], [13, "U"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "W", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }] },
+        { type: "word", letters: [{ number: 5 }, { number: 6 }, { number: 3 }, { number: 7 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 8, letter: "B", fixed: true }, { number: 9 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 10 }, { number: 11 }, { number: 7 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 6 }, { number: 11 }, { number: 7 }] },
+        { type: "word", letters: [{ number: 5 }, { number: 6 }, { number: 8 }, { number: 9 }] },
+        { type: "word", letters: [{ number: 12 }, { number: 13 }, { number: 11 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 10,
+    category: "HOPE",
+    solutionMap: new Map([
+      [1, "E"], [2, "V"], [3, "R"], [4, "Y"], [5, "D"], [6, "A"], [7, "I"], [8, "S"], [9, "N"], [10, "W"], [11, "B"], [12, "G"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "E", fixed: true }, { number: 2 }, { number: 1 }, { number: 3 }, { number: 4 }] },
+        { type: "word", letters: [{ number: 5 }, { number: 6 }, { number: 4 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 8 }] },
+        { type: "word", letters: [{ number: 6 }] },
+        { type: "word", letters: [{ number: 9 }, { number: 1 }, { number: 10 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 11 }, { number: 1 }, { number: 12 }, { number: 7 }, { number: 9 }, { number: 9 }, { number: 7 }, { number: 9 }, { number: 12 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 11,
+    category: "AMBITION",
+    solutionMap: new Map([
+      [1, "D"], [2, "R"], [3, "E"], [4, "A"], [5, "M"],
+      [6, "B"], [7, "I"], [8, "G"], [9, "N"], [10, "T"],
+      [11, "O"], [12, "F"], [13, "L"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "D", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }, { number: 5 }] },
+        { type: "word", letters: [{ number: 6 }, { number: 7 }, { number: 8 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 4 }, { number: 9 }, { number: 1 }] },
+        { type: "word", letters: [{ number: 1 }, { number: 4 }, { number: 2 }, { number: 3 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 10 }, { number: 11 }] },
+        { type: "word", letters: [{ number: 12 }, { number: 4 }, { number: 7 }, { number: 13 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 12,
+    category: "HAPPINESS",
+    solutionMap: new Map([
+      [1, "C"], [2, "H"], [3, "O"], [4, "S"], [5, "E"],
+      [6, "T"], [7, "B"], [8, "A"], [9, "P"], [10, "Y"], [11, "D"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "C", fixed: true }, { number: 2 }, { number: 3 }, { number: 3 }, { number: 4 }, { number: 5 }] },
+        { type: "word", letters: [{ number: 6 }, { number: 3 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 5 }] },
+        { type: "word", letters: [{ number: 2 }, { number: 8 }, { number: 9 }, { number: 9 }, { number: 10 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 6 }, { number: 3 }, { number: 11 }, { number: 8 }, { number: 10 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 13,
+    category: "POTENTIAL",
+    solutionMap: new Map([
+      [1, "Y"], [2, "O"], [3, "U"], [4, "A"], [5, "R"], [6, "E"], [7, "C"], [8, "P"], [9, "B"], [10, "L"], [11, "F"], [12, "M"], [13, "Z"], [14, "I"], [15, "N"], [16, "G"], [17, "S"], [18, "T"], [19, "H"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "Y", fixed: true }, { number: 2 }, { number: 3 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 5 }, { number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 4 }, { number: 8 }, { number: 4 }, { number: 9 }, { number: 10 }, { number: 6 }] },
         { type: "word", letters: [{ number: 2 }, { number: 11 }] }
       ],
       [
-        { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 11 }, { number: 7 }, { number: 12 }, { number: 4 }], punctuation: "." }
+        { type: "word", letters: [{ number: 4 }, { number: 12 }, { number: 4 }, { number: 13 }, { number: 14 }, { number: 15 }, { number: 16 }] },
+        { type: "word", letters: [{ number: 18 }, { number: 19 }, { number: 14 }, { number: 15 }, { number: 16 }, { number: 17 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 14,
+    category: "LIFESTYLE",
+    solutionMap: new Map([
+      [1, "D"], [2, "O"], [3, "W"], [4, "H"], [5, "A"], [6, "T"], [7, "Y"], [8, "U"], [9, "L"], [10, "V"], [11, "E"], [12, "R"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "D", fixed: true }, { number: 2 }] },
+        { type: "word", letters: [{ number: 3 }, { number: 4 }, { number: 5 }, { number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 2 }, { number: 8 }] },
+        { type: "word", letters: [{ number: 9 }, { number: 2 }, { number: 10 }, { number: 11 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 11 }, { number: 10 }, { number: 11 }, { number: 12 }, { number: 7 }] },
+        { type: "word", letters: [{ number: 1 }, { number: 5 }, { number: 7 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 15,
+    category: "KINDNESS",
+    solutionMap: new Map([
+      [1, "K"], [2, "I"], [3, "N"], [4, "D"], [5, "E"], [6, "S"], [7, "F"], [8, "R"], [9, "P"], [10, "L"], [11, "T"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "K", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }, { number: 3 }, { number: 5 }, { number: 6 }, { number: 6 }] },
+        { type: "word", letters: [{ number: 2 }, { number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 8 }, { number: 5 }, { number: 5 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 6 }, { number: 9 }, { number: 8 }, { number: 2 }, { number: 3 }, { number: 1 }, { number: 10 }, { number: 5 }] },
+        { type: "word", letters: [{ number: 2 }, { number: 11 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 16,
+    category: "SELF BELIEF",
+    solutionMap: new Map([
+      [1, "B"], [2, "E"], [3, "L"], [4, "I"], [5, "V"], [6, "N"], [7, "Y"], [8, "O"], [9, "U"], [10, "R"], [11, "S"], [12, "F"], [13, "A"], [14, "W"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "B", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }, { number: 2 }, { number: 5 }, { number: 2 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 8 }, { number: 9 }, { number: 10 }, { number: 11 }, { number: 2 }, { number: 3 }, { number: 12 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 13 }, { number: 3 }, { number: 14 }, { number: 13 }, { number: 7 }, { number: 11 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 17,
+    category: "OPTIMISM",
+    solutionMap: new Map([
+      [1, "M"], [2, "A"], [3, "K"], [4, "E"], [5, "T"], [6, "O"], [7, "D"], [8, "Y"], [9, "H"], [10, "B"], [11, "S"], [12, "V"], [13, "R"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "M", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }] },
+        { type: "word", letters: [{ number: 5 }, { number: 6 }, { number: 7 }, { number: 2 }, { number: 8 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 5 }, { number: 9 }, { number: 4 }] },
+        { type: "word", letters: [{ number: 10 }, { number: 4 }, { number: 11 }, { number: 5 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 2 }, { number: 8 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 12 }, { number: 4 }, { number: 13 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 18,
+    category: "PERSPECTIVE",
+    solutionMap: new Map([
+      [1, "S"], [2, "U"], [3, "C"], [4, "E"], [5, "I"], [6, "A"], [7, "J"], [8, "O"], [9, "R"], [10, "N"], [11, "Y"], [12, "T"], [13, "D"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 2 }, { number: 3 }, { number: 3 }, { number: 4 }, { number: 1 }, { number: 1 }] },
+        { type: "word", letters: [{ number: 5 }, { number: 1 }] },
+        { type: "word", letters: [{ number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 8 }, { number: 2 }, { number: 9 }, { number: 10 }, { number: 4 }, { number: 11 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 10 }, { number: 8 }, { number: 12 }] },
+        { type: "word", letters: [{ number: 6 }] },
+        { type: "word", letters: [{ number: 13 }, { number: 4 }, { number: 1 }, { number: 12 }, { number: 5 }, { number: 10 }, { number: 6 }, { number: 12 }, { number: 5 }, { number: 8 }, { number: 10 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 19,
+    category: "PROGRESS",
+    solutionMap: new Map([
+      [1, "K"], [2, "E"], [3, "P"], [4, "G"], [5, "O"], [6, "I"], [7, "N"], [8, "Y"], [9, "U"], [10, "A"], [11, "R"], [12, "D"], [13, "T"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "K", fixed: true }, { number: 2 }, { number: 2 }, { number: 3 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 5 }, { number: 6 }, { number: 7 }, { number: 4 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 8 }, { number: 5 }, { number: 9 }] },
+        { type: "word", letters: [{ number: 10 }, { number: 11 }, { number: 2 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 12 }, { number: 5 }, { number: 6 }, { number: 7 }, { number: 4 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 11 }, { number: 2 }, { number: 10 }, { number: 13 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 20,
+    category: "FUTURE",
+    solutionMap: new Map([
+      [1, "T"], [2, "H"], [3, "E"], [4, "B"], [5, "S"], [6, "I"], [7, "Y"], [8, "O"], [9, "C"], [10, "M"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "T", fixed: true }, { number: 2 }, { number: 3 }] },
+        { type: "word", letters: [{ number: 4 }, { number: 3 }, { number: 5 }, { number: 1 }] },
+        { type: "word", letters: [{ number: 6 }, { number: 5 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 3 }, { number: 1 }] },
+        { type: "word", letters: [{ number: 1 }, { number: 8 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 9 }, { number: 8 }, { number: 10 }, { number: 3 }], punctuation: "." }
       ]
     ]
   }
@@ -217,7 +514,7 @@ const mistakeDots = Array.from(document.querySelectorAll(".mistakes__dots span")
 function initLevel(index) {
   const levelData = levels[index];
   if (!levelData) {
-    statusText.textContent = "You've completed all levels! Well done!";
+    statusText.textContent = "You've completed all 20 levels! You are a Grand Master!";
     return;
   }
 
