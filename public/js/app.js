@@ -131,6 +131,61 @@ const levels = [
         { type: "word", letters: [{ number: 13 }, { number: 2 }, { number: 2 }, { number: 7 }], punctuation: "." }
       ]
     ]
+  },
+  {
+    level: 4,
+    category: "WISDOM",
+    solutionMap: new Map([
+      [1, "L"], [2, "I"], [3, "V"], [4, "E"], [5, "W"],
+      [6, "E"], [7, "L"], [8, "A"], [9, "U"], [10, "G"], [11, "H"], [12, "O"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }] },
+        { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 8 }, { number: 9 }, { number: 10 }, { number: 11 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 1, letter: "L", fixed: true }, { number: 12 }, { number: 3 }, { number: 4 }], punctuation: "." }
+      ]
+    ]
+  },
+  {
+    level: 5,
+    category: "MOTIVATION",
+    solutionMap: new Map([
+      [1, "Y"], [2, "O"], [3, "U"], [4, "C"], [5, "A"], [6, "N"],
+      [7, "D"], [8, "I"], [9, "T"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "Y", fixed: true }, { number: 2 }, { number: 3 }] },
+        { type: "word", letters: [{ number: 4, letter: "C", fixed: true }, { number: 5 }, { number: 6 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 7 }, { number: 2 }] },
+        { type: "word", letters: [{ number: 8 }, { number: 9 }], punctuation: "!" }
+      ]
+    ]
+  },
+  {
+    level: 6,
+    category: "INSPIRATION",
+    solutionMap: new Map([
+      [1, "S"], [2, "T"], [3, "A"], [4, "Y"], [5, "B"],
+      [6, "R"], [7, "I"], [8, "G"], [9, "H"]
+    ]),
+    phraseRows: [
+      [
+        { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 5, letter: "B", fixed: true }, { number: 6 }, { number: 7 }, { number: 8 }, { number: 11 }] },
+        { type: "word", letters: [{ number: 2 }, { number: 11 }] }
+      ],
+      [
+        { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 11 }, { number: 7 }, { number: 12 }, { number: 4 }], punctuation: "." }
+      ]
+    ]
   }
 ];
 
