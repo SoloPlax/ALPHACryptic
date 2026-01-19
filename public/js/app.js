@@ -356,7 +356,7 @@ const levels = [
       ],
       [
         { type: "word", letters: [{ number: 11 }, { number: 10 }, { number: 11 }, { number: 12 }, { number: 7 }] },
-        { type: "word", letters: [{ number: 1 }, { number: 5 }, { number: 7 }], punctuation: "." }
+        { type: "word", letters: [{ number: 1, letter: "D", fixed: true }, { number: 5 }, { number: 7 }], punctuation: "." }
       ]
     ]
   },
@@ -428,7 +428,7 @@ const levels = [
     ]),
     phraseRows: [
       [
-        { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 2 }, { number: 3 }, { number: 3 }, { number: 4 }, { number: 1 }, { number: 1 }] },
+        { type: "word", letters: [{ number: 1, letter: "S", fixed: true }, { number: 2 }, { number: 3 }, { number: 4 }, { number: 4 }, { number: 1 }, { number: 1 }] },
         { type: "word", letters: [{ number: 5 }, { number: 1 }] },
         { type: "word", letters: [{ number: 6 }] }
       ],
@@ -497,6 +497,7 @@ let activeInput = null;
 let mistakes = 0;
 const maxMistakes = 3;
 let gameOver = false;
+let gameStarted = false;
 
 // DOM Elements
 const levelDisplay = document.getElementById("level-display");
@@ -504,10 +505,11 @@ const categoryDisplay = document.getElementById("category-display");
 const pointsDisplay = document.getElementById("points-display");
 const phraseRowIds = ["phrase-row-1", "phrase-row-2", "phrase-row-3"];
 const statusText = document.getElementById("status-text");
-const checkBtn = document.getElementById("check-btn");
+const startHintBtn = document.getElementById("start-hint-btn");
 const resetBtn = document.getElementById("reset-btn");
 const nextLevelBtn = document.getElementById("next-level-btn");
 const hintBtn = document.getElementById("hint-btn");
+const instructionArea = document.getElementById("instruction-area");
 const keyboard = document.getElementById("keyboard");
 const mistakeDots = Array.from(document.querySelectorAll(".mistakes__dots span"));
 
@@ -515,6 +517,8 @@ function initLevel(index) {
   const levelData = levels[index];
   if (!levelData) {
     statusText.textContent = "You've completed all 20 levels! You are a Grand Master!";
+    instructionArea.classList.remove("instruction--hidden");
+    startHintBtn.style.display = "none";
     return;
   }
 
@@ -525,13 +529,16 @@ function initLevel(index) {
   activeInput = null;
   mistakes = 0;
   gameOver = false;
+  gameStarted = false;
 
   // Update UI
   levelDisplay.textContent = `LEVEL ${levelData.level}`;
   categoryDisplay.textContent = levelData.category;
-  updatePoints(0); // Refresh display
+  updatePoints(0); 
   statusText.textContent = "Tap a tile and start filling letters.";
   statusText.className = "status";
+  instructionArea.classList.remove("instruction--hidden");
+  startHintBtn.style.display = "block";
   nextLevelBtn.style.display = "none";
   keyboard.classList.remove("keyboard--disabled");
   updateMistakes();
@@ -586,7 +593,15 @@ function registerInput(number, input) {
   inputsByNumber.get(number).push(input);
   orderedInputs.push(input);
 
-  input.addEventListener("click", () => setActiveInput(input));
+  input.addEventListener("click", () => {
+    if (!gameStarted) startGame();
+    setActiveInput(input);
+  });
+}
+
+function startGame() {
+  gameStarted = true;
+  instructionArea.classList.add("instruction--hidden");
 }
 
 function setActiveInput(input) {
@@ -610,15 +625,17 @@ function handleInputValue(input, rawValue) {
   const correctLetter = levelData.solutionMap.get(number);
 
   if (value === correctLetter) {
-    // Correct guess - ONLY fill this cell (User must fill others manually)
+    // Correct guess
     input.value = value;
     playSound('correct');
-    updatePoints(5); // Small reward for correct guess
+    updatePoints(5); 
     
     if (isSolutionComplete()) {
       statusText.textContent = "Amazing! You decrypted the full phrase!";
       statusText.className = "status status--success";
-      updatePoints(50); // Bonus for finishing level
+      instructionArea.classList.remove("instruction--hidden");
+      startHintBtn.style.display = "none";
+      updatePoints(50); 
       playSound('victory');
       endGame(true);
     } else {
@@ -629,18 +646,17 @@ function handleInputValue(input, rawValue) {
   } else {
     // Wrong guess
     mistakes += 1;
-    updatePoints(-10); // Penalty for mistake
+    updatePoints(-10); 
     updateMistakes();
     playSound('mistake');
     
-    // Immediate visual feedback for error
     input.value = value;
     input.classList.remove("letter__input--active");
     input.classList.add("letter__input--active-error");
     
     setTimeout(() => {
       input.classList.remove("letter__input--active-error");
-      input.value = ""; // Clear the wrong letter
+      input.value = ""; 
       if (!gameOver) {
         input.classList.add("letter__input--active");
       }
@@ -649,6 +665,8 @@ function handleInputValue(input, rawValue) {
     if (mistakes >= maxMistakes) {
       statusText.textContent = "Out of tries! Reset to play again.";
       statusText.className = "status status--warn";
+      instructionArea.classList.remove("instruction--hidden");
+      startHintBtn.style.display = "none";
       playSound('wrong');
       endGame(false);
     } else {
@@ -658,9 +676,9 @@ function handleInputValue(input, rawValue) {
   }
 }
 
-function handleHint() {
-  if (gameOver || points < 20) {
-    if (points < 20) {
+function handleHint(isFree = false) {
+  if (gameOver || (!isFree && points < 20)) {
+    if (!isFree && points < 20) {
       statusText.textContent = "Not enough points for a hint!";
       statusText.className = "status status--warn";
     }
@@ -672,13 +690,12 @@ function handleHint() {
   
   if (emptyInputs.length === 0) return;
 
-  // Pick a random empty input
   const randomInput = emptyInputs[Math.floor(Math.random() * emptyInputs.length)];
   const number = Number(randomInput.dataset.number);
   const correctLetter = levelData.solutionMap.get(number);
 
-  // Apply hint
-  updatePoints(-20);
+  if (!isFree) updatePoints(-20);
+  
   randomInput.value = correctLetter;
   playSound('correct');
   statusText.textContent = "Hint revealed!";
@@ -686,6 +703,8 @@ function handleHint() {
   if (isSolutionComplete()) {
     statusText.textContent = "Amazing! You decrypted the full phrase!";
     statusText.className = "status status--success";
+    instructionArea.classList.remove("instruction--hidden");
+    startHintBtn.style.display = "none";
     playSound('victory');
     endGame(true);
   }
@@ -695,7 +714,6 @@ function moveFocus(direction) {
   if (!activeInput) return;
   const index = orderedInputs.indexOf(activeInput);
   
-  // Find next non-filled input
   let nextIndex = index + direction;
   while (nextIndex >= 0 && nextIndex < orderedInputs.length) {
     const nextInput = orderedInputs[nextIndex];
@@ -740,7 +758,6 @@ function buildPhrase(levelData) {
     });
   });
 
-  // Set first empty input as active
   const firstEmpty = orderedInputs.find(input => !input.value);
   if (firstEmpty) {
     setActiveInput(firstEmpty);
@@ -789,6 +806,7 @@ function resetBoard() {
 function handleKeyboardClick(event) {
   const key = event.target.closest(".key");
   if (!key || gameOver) return;
+  if (!gameStarted) startGame();
 
   const action = key.dataset.action;
   if (action === "backspace") {
@@ -811,6 +829,7 @@ function handleKeyboardClick(event) {
 
 function handlePhysicalKey(event) {
   if (gameOver || !activeInput) return;
+  if (!gameStarted) startGame();
   const key = event.key.toUpperCase();
   if (key === "ENTER") {
     event.preventDefault();
@@ -831,18 +850,13 @@ function handlePhysicalKey(event) {
 }
 
 // Events
-checkBtn.addEventListener("click", () => {
-    if (isSolutionComplete()) {
-        if (currentLevelIndex < levels.length - 1) {
-            initLevel(currentLevelIndex + 1);
-        }
-    } else {
-        statusText.textContent = "Fill in the correct letters first!";
-    }
+startHintBtn.addEventListener("click", () => {
+    handleHint(true); // Free hint to start
+    startGame();
 });
 resetBtn.addEventListener("click", resetBoard);
 nextLevelBtn.addEventListener("click", () => initLevel(currentLevelIndex + 1));
-hintBtn.addEventListener("click", handleHint);
+hintBtn.addEventListener("click", () => handleHint(false));
 keyboard.addEventListener("click", handleKeyboardClick);
 document.addEventListener("keydown", handlePhysicalKey);
 

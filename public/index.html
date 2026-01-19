@@ -9,9 +9,12 @@
   <body>
     <div class="app">
       <header class="top-bar">
-        <div class="stats-item">
-          <span class="stats-label">POINTS</span>
-          <span id="points-display" class="stats-value">100</span>
+        <div class="top-bar__side">
+          <button id="reset-btn" class="header-btn">RESET</button>
+          <div class="stats-item">
+            <span class="stats-label">POINTS</span>
+            <span id="points-display" class="stats-value">100</span>
+          </div>
         </div>
         <div class="mistakes">
           <span class="mistakes__label">MISTAKES</span>
@@ -21,8 +24,8 @@
             <span></span>
           </div>
         </div>
-        <div class="stats-item">
-          <button id="hint-btn" class="hint-btn">HINT (-20)</button>
+        <div class="top-bar__side">
+          <button id="hint-btn" class="header-btn">HINT (-20)</button>
         </div>
       </header>
 
@@ -38,15 +41,12 @@
           <div class="phrase__row" id="phrase-row-3"></div>
         </section>
 
-        <section class="instruction">
-          <button class="instruction__btn" id="check-btn">
+        <section class="instruction" id="instruction-area">
+          <button class="instruction__btn" id="start-hint-btn">
             Decrypt the whole phrase. <strong>Good luck!</strong>
           </button>
           <p class="status" id="status-text">Tap a tile and start filling letters.</p>
-          <div class="instruction__actions">
-            <button class="reset" id="reset-btn">Reset</button>
-            <button class="next-level" id="next-level-btn" style="display: none;">Next Level →</button>
-          </div>
+          <button class="next-level" id="next-level-btn" style="display: none;">Next Level →</button>
         </section>
       </main>
 
